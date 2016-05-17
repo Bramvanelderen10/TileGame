@@ -10,12 +10,13 @@ public class GameManager : MonoBehaviour {
     public System.Random rnd;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         rnd = new System.Random();
         tileList = new List<GameObject>();
         CreatePlayfield();
 
         Input.multiTouchEnabled = false;
+        GetMoveAbleTiles();
     }
 	
 	// Update is called once per frame
@@ -24,23 +25,67 @@ public class GameManager : MonoBehaviour {
         {
             print("win");
         }
-        foreach ( Touch touch in Input.touches)
-        {
-
-        }
 	}
 
-    List<GameObject> GetMoveAbleTiles()
+
+    //Hardcoded method based on a playfield of 3x3 IF PLAYFIELD CHANGES THIS DOES NOT WORK ANYMORE
+    public List<TileController> GetMoveAbleTiles()
     {
+        List<TileController> availableTiles = new List<TileController>();
         foreach (GameObject tile in tileList)
         {
             if (!tile.GetComponent<TileController>().fc)
             {
+                int tileNumber = tile.GetComponent<TileController>().tileNumber;
 
+                if ((tileNumber - 3) >= 0)
+                    availableTiles.Add(tileList[tileNumber - 3].GetComponent<TileController>());
+
+                if ((tileNumber + 3) <= 8)
+                    availableTiles.Add(tileList[tileNumber + 3].GetComponent<TileController>());
+
+                if ((tileNumber - 1) >= 0)
+                    availableTiles.Add(tileList[tileNumber - 1].GetComponent<TileController>());
+
+                if ((tileNumber + 3) <= 8)
+                    availableTiles.Add(tileList[tileNumber + 1].GetComponent<TileController>());
             }
         }
 
-        return null;
+        return availableTiles;
+    }
+
+    public void PlaceFiller(GameObject filler)
+    {
+        List<GameObject> availableTiles = new List<GameObject>();
+
+        GameObject destinationTile = null;
+        foreach (GameObject tile in tileList)
+        {
+            if (!tile.GetComponent<TileController>().fc)
+            {
+                if (!destinationTile)
+                {
+                    destinationTile = tile;
+                } else
+                {
+                    float distance = Vector3.Distance(destinationTile.transform.position, filler.transform.position);
+                    float newDistance = Vector3.Distance(tile.transform.position, filler.transform.position);
+
+                    if (newDistance < distance)
+                    {
+                        destinationTile = tile;
+                    }
+                }
+                availableTiles.Add(tile);
+            }
+        }
+
+        destinationTile.GetComponent<TileController>().fc = filler.GetComponent<FillController>();
+        Vector3 fillerPos = filler.transform.position;
+        fillerPos = destinationTile.transform.position;
+        fillerPos.z -= 10;
+        filler.transform.position = fillerPos;
     }
 
     void CreatePlayfield()
@@ -65,7 +110,7 @@ public class GameManager : MonoBehaviour {
         tilePositions.Add(new Vector3(-tileWidth, -tileWidth, z));
         tilePositions.Add(new Vector3(0, -tileWidth, z));
         tilePositions.Add(new Vector3(tileWidth, -tileWidth, z));
-
+        int i = 0;
         foreach (Vector3 tilePosition in tilePositions)
         {
             GameObject tile = Instantiate(tilePrefab);
@@ -78,6 +123,7 @@ public class GameManager : MonoBehaviour {
             tile.transform.localScale = new Vector3(tileWidth, tileWidth, tileWidth);
 
             TileController tc = tile.GetComponent<TileController>();
+            tc.tileNumber = i;
 
             if (tileFillPrefab.Count > 0)
             {
@@ -92,6 +138,7 @@ public class GameManager : MonoBehaviour {
             }
 
             tileList.Add(tile);
+            i++;
         }
 
 
