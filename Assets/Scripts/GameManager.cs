@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
-
     //Hardcoded method based on a playfield of 3x3 IF PLAYFIELD CHANGES THIS DOES NOT WORK ANYMORE
     public List<TileController> GetMoveAbleTiles()
     {
@@ -46,10 +45,10 @@ public class GameManager : MonoBehaviour {
                 if ((tileNumber + 3) <= 8)
                     availableTiles.Add(tileList[tileNumber + 3].GetComponent<TileController>());
 
-                if ((tileNumber - 1) >= 0)
+                if ((tileNumber - 1) >= 0 && tileNumber != 0 && tileNumber != 3 && tileNumber != 6)
                     availableTiles.Add(tileList[tileNumber - 1].GetComponent<TileController>());
 
-                if ((tileNumber + 1) <= 8)
+                if ((tileNumber + 1) <= 8 && tileNumber!= 2 && tileNumber != 5 && tileNumber != 8)
                     availableTiles.Add(tileList[tileNumber + 1].GetComponent<TileController>());
             }
         }
@@ -127,23 +126,72 @@ public class GameManager : MonoBehaviour {
             TileController tc = tile.GetComponent<TileController>();
             tc.tileNumber = i;
 
-            if (tileFillPrefab.Count > 0)
-            {
-                int random = rnd.Next(0, tileFillPrefab.Count - 1);
-                GameObject fill = tileFillPrefab[random];
-                tileFillPrefab.RemoveAt(random);
-
-                GameObject fillObject = Instantiate(fill);
-                ScaleSpriteToTile(fillObject, tileWidth);
-                fillObject.transform.position = tilePosition;
-                tc.fc = fillObject.GetComponent<FillController>();
-            }
-
             tileList.Add(tile);
             i++;
         }
 
+        FillTiles();
+    }
 
+    bool CheckIfSolvalbe()
+    {
+        int inversions = 0;
+        for (int i = 0; i < tileList.Count; i++)
+        {
+            if (tileList[i].GetComponent<TileController>().fc)
+            {
+                int tileNumber = tileList[i].GetComponent<TileController>().tileNumber;
+                int fillNumber = tileList[i].GetComponent<TileController>().fc.fillNumber;
+                for (int y = i + 1; y < tileList.Count; y++)
+                {
+                    if (tileList[y].GetComponent<TileController>().fc && tileList[y].GetComponent<TileController>().fc.fillNumber < fillNumber)
+                        inversions++;
+                }
+            }            
+        }
+        
+        return inversions % 2 != 0;
+    }
+
+    void ResetTiles()
+    {
+        foreach (GameObject tile in tileList)
+        {
+            FillController fc = tile.GetComponent<TileController>().fc;
+            tile.GetComponent<TileController>().fc = null;
+            if (fc)
+                Destroy(fc.gameObject);
+        }
+    }
+
+    void FillTiles()
+    {
+        List<GameObject> tileFillers = new List<GameObject>(tileFillPrefab);
+        foreach (GameObject tile in tileList)
+        {
+            if (tileFillers.Count > 0)
+            {
+                TileController tc = tile.GetComponent<TileController>();
+                int random = rnd.Next(0, tileFillers.Count - 1);
+                GameObject fill = tileFillers[random];
+                tileFillers.RemoveAt(random);
+
+                GameObject fillObject = Instantiate(fill);
+                ScaleSpriteToTile(fillObject, tile.transform.localScale.x);
+                fillObject.transform.position = tile.transform.position;
+                Vector3 pos = fillObject.transform.position;
+                pos.z -= 10;
+                fillObject.transform.position = pos;
+
+                tc.fc = fillObject.GetComponent<FillController>();
+            }
+        }
+
+        if (CheckIfSolvalbe())
+        {
+            ResetTiles();
+            FillTiles();
+        }
     }
 
     bool CheckWinCondition()
