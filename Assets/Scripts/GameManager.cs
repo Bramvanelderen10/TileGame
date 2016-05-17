@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+
         rnd = new System.Random();
         tileList = new List<GameObject>();
         CreatePlayfield();
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour {
                 if ((tileNumber - 1) >= 0)
                     availableTiles.Add(tileList[tileNumber - 1].GetComponent<TileController>());
 
-                if ((tileNumber + 3) <= 8)
+                if ((tileNumber + 1) <= 8)
                     availableTiles.Add(tileList[tileNumber + 1].GetComponent<TileController>());
             }
         }
