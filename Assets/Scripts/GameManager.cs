@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour {
 
 	void Awake ()
     {
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
-
         rnd = new System.Random();
         tileList = new List<GameObject>();
         CreatePlayfield();
