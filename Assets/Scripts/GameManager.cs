@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
+    public string sceneName;
     public GameObject tilePrefab;
     public List<GameObject> tileFillPrefab;
+    public GameObject finalFillPrefab;
+    public GameObject pauseMenuPrefab;
     private List<GameObject> tileList;
-    public System.Random rnd;
+    private System.Random rnd;
 
-	// Use this for initialization
-	void Awake () {
+	void Awake ()
+    {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
 
         rnd = new System.Random();
@@ -20,12 +25,27 @@ public class GameManager : MonoBehaviour {
         Input.multiTouchEnabled = false;
         GetMoveAbleTiles();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+	void Update ()
+    {
         if (CheckWinCondition())
         {
-            print("win");
+            foreach (GameObject tile in tileList)
+            {
+                if (!tile.GetComponent<TileController>().fc)
+                {
+                    GameObject finalFiller = Instantiate(finalFillPrefab);
+                    ScaleSpriteToTile(finalFiller, tile.transform.localScale.x);
+                    Vector3 pos = finalFiller.transform.position;
+                    pos = tile.transform.position;
+                    pos.z -= 10;
+                    finalFiller.transform.position = pos;
+                    tile.GetComponent<TileController>().fc = finalFiller.GetComponent<FillController>();
+                    GameObject pauseMenu = Instantiate(pauseMenuPrefab);
+                }
+            }
+
+            
         }
 	}
 
@@ -95,7 +115,6 @@ public class GameManager : MonoBehaviour {
         float width = height * Screen.width / Screen.height;
 
         float result = (height >= width) ? width : height;
-
 
         List<Vector3> tilePositions = new List<Vector3>();
 

@@ -56,6 +56,15 @@ public class DraggingScript : MonoBehaviour
                                 gameObjectTodrag = tile.gameObject.GetComponent<TileController>().fc.gameObject;
                                 tile.gameObject.GetComponent<TileController>().fc = null;
 
+                                Vector3 pos = gameObjectTodrag.transform.position;
+                                pos.z -= 2;
+                                gameObjectTodrag.transform.position = pos;
+
+                                Vector3 scale = gameObjectTodrag.transform.localScale;
+                                scale.x /= 1.2f;
+                                scale.y /= 1.2f;
+                                gameObjectTodrag.transform.localScale = scale;
+
                                 GOcenter = gameObjectTodrag.transform.position;
                                 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                                 offset = touchPosition - GOcenter;
@@ -70,13 +79,22 @@ public class DraggingScript : MonoBehaviour
                     {
                         touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                         newGOCenter = touchPosition - offset;
-                        gameObjectTodrag.transform.position = new Vector3(newGOCenter.x, newGOCenter.y, GOcenter.z);
+                        gameObjectTodrag.transform.position = new Vector3(newGOCenter.x, newGOCenter.y, GOcenter.z);                        
                     }
                     break;
 
                 case TouchPhase.Ended:
                     if (draggingMode)
                     {
+                        Vector3 pos = gameObjectTodrag.transform.position;
+                        pos.z += 2;
+                        gameObjectTodrag.transform.position = pos;
+
+                        Vector3 scale = gameObjectTodrag.transform.localScale;
+                        scale.x *= 1.2f;
+                        scale.y *= 1.2f;
+                        gameObjectTodrag.transform.localScale = scale;
+
                         gameManager.PlaceFiller(gameObjectTodrag);
                         emptyTiles = gameManager.GetMoveAbleTiles();
                     }                    
