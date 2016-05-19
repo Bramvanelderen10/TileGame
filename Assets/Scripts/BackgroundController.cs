@@ -4,7 +4,7 @@ using System.Collections;
 public class BackgroundController : MonoBehaviour {    
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         Camera cam = Camera.main;
 
         float height = (float)Camera.main.orthographicSize * 2.0f;
