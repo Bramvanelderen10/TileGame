@@ -4,18 +4,16 @@ using System.Collections;
 public class ScaleToBackground : MonoBehaviour {
 
     private Sprite sprite;
+    private Camera cam;
 
 	// Use this for initialization
 	void Start () {
         sprite = this.gameObject.GetComponent<SpriteRenderer>().sprite;
-
-        Camera cam = Camera.main;
-
+        cam = Camera.main;
         float height = (float)Camera.main.orthographicSize * 2.0f;
         float width = height * Screen.width / Screen.height;
         Vector2 dimensions = new Vector2(width, height);
         ScaleSpriteToTile(this.gameObject, dimensions);
-
     }
 
     void ScaleSpriteToTile(GameObject sprite, Vector2 dimensions)
