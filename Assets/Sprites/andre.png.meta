@@ -1,0 +1,201 @@
+fileFormatVersion: 2
+guid: 2ee21fc6e3694c34f954c5b9d28507a2
+timeCreated: 1463679348
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: andre_0
+    21300002: andre_1
+    21300004: andre_2
+    21300006: andre_3
+    21300008: andre_4
+    21300010: andre_5
+    21300012: andre_6
+    21300014: andre_7
+    21300016: andre_8
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: andre_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1898.6667
+        width: 1168
+        height: 949.3333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -341.5, y: 278.72302}
+        - {x: -341.5, y: -277.27698}
+        - {x: 341.5, y: -277.27698}
+        - {x: 341.5, y: 278.72302}
+    - name: andre_1
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 1898.6667
+        width: 1168
+        height: 949.3333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -341.33337, y: 278.72302}
+        - {x: -341.33337, y: -277.27698}
+        - {x: 342.66663, y: -277.27698}
+        - {x: 342.66663, y: 278.72302}
+    - name: andre_2
+      rect:
+        serializedVersion: 2
+        x: 2336
+        y: 1898.6667
+        width: 1168
+        height: 949.3333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -341.16675, y: 278.72302}
+        - {x: -341.16675, y: -277.27698}
+        - {x: 341.83325, y: -277.27698}
+        - {x: 341.83325, y: 278.72302}
+    - name: andre_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 949.6667
+        width: 1168
+        height: 949.3333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -341.5, y: 277.55634}
+        - {x: -341.5, y: -277.44366}
+        - {x: 341.5, y: -277.44366}
+        - {x: 341.5, y: 277.55634}
+    - name: andre_4
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 949.6667
+        width: 1168
+        height: 949.3333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -341.33337, y: 277.55634}
+        - {x: -341.33337, y: -277.44366}
+        - {x: 342.66663, y: -277.44366}
+        - {x: 342.66663, y: 277.55634}
+    - name: andre_5
+      rect:
+        serializedVersion: 2
+        x: 2336
+        y: 949.6667
+        width: 1168
+        height: 949.3333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -341.16675, y: 277.55634}
+        - {x: -341.16675, y: -277.44366}
+        - {x: 341.83325, y: -277.44366}
+        - {x: 341.83325, y: 277.55634}
+    - name: andre_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.666687
+        width: 1168
+        height: 949.3333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -341.5, y: 278.38965}
+        - {x: -341.5, y: -277.61035}
+        - {x: 341.5, y: -277.61035}
+        - {x: 341.5, y: 278.38965}
+    - name: andre_7
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 0.666687
+        width: 1168
+        height: 949.3333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -341.33337, y: 278.38965}
+        - {x: -341.33337, y: -277.61035}
+        - {x: 342.66663, y: -277.61035}
+        - {x: 342.66663, y: 278.38965}
+    - name: andre_8
+      rect:
+        serializedVersion: 2
+        x: 2336
+        y: 0.666687
+        width: 1168
+        height: 949.3333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -341.16675, y: 278.38965}
+        - {x: -341.16675, y: -277.61035}
+        - {x: 341.83325, y: -277.61035}
+        - {x: 341.83325, y: 278.38965}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
